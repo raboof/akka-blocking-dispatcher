@@ -10,14 +10,12 @@
 
 1. Why is blocking dangerous?
 1. Using a custom dispatcher
-1. Project Loom
 
 @notes[If you have been using Akka, you have probably heard it is
 bad to use blocking code inside an actor. In this video we will
 see:<br>
  * why blocking is dangerous<br>
  * how you can use a custom dispatcher if you must block<br>
- * whether Project Loom will help fix this problem]
 
 @@@
 
@@ -263,14 +261,6 @@ blocking actors. Such dispatchers are configured in your application.conf]
 @notes[All 50 messages to our non-blocking actor are immediately
 delivered, and our blocking actor is still using a limited number of
 threads]
-
-@@@
-
-@@@section
-
-# Project Loom
-
-@notes[You may have heard about Project Loom, a project to bring fibers (cheap threads) to the JVM. TODO: Actors model still useful for managing concurrent access to shared resources, but dispatchers can have many threads, so one blocking actor perhaps wouldn't interfere with other actors anymore. However, when possible, writing your blocking actor as a non-blocking one would still give benefits within that actor, since it allows that actor to process messages while the operation is running.]
 
 @@@
 
