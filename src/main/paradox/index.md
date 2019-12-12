@@ -1,6 +1,8 @@
-@@@section { data-background="#15a9ce" }
+@@@section { data-background-color="#15a8ce" data-background-image="./front-bg.svg" }
 
-### Managing Blocking in Akka
+### ![akka logo](./akka-reverse.svg) Managing Blocking in Akka
+
+#### Arnout Engelen
 
 @notes[Hi! I'm Arnout from the Akka team, and today, we will look at blocking when using Akka.]
 
@@ -15,7 +17,7 @@
 bad to use blocking code inside an actor. In this video we will
 see:<br>
  * why blocking is dangerous<br>
- * how you can use a custom dispatcher if you must block<br>
+ * how you can use a custom dispatcher if you must block]
 
 @@@
 
