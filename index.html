@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Managing Blocking in Akka</title>
+<title>akka logo Managing Blocking in Akka</title>
 
 <link rel="stylesheet" href="css/reveal.css">
 <link rel="stylesheet" href="css/extra.css">
@@ -27,14 +27,15 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <div class="reveal">
 <div class="slides">
-<section data-background="#15a9ce">
-<h3><a href="#managing-blocking-in-akka" name="managing-blocking-in-akka" class="anchor"><span class="anchor-link"></span></a>Managing Blocking in Akka</h3>
+<section data-background-image="./front-bg.svg" data-background-color="#15a8ce">
+<h3><a href="#managing-blocking-in-akka" name="managing-blocking-in-akka" class="anchor"><span class="anchor-link"></span></a><img src="./akka-reverse.svg" alt="akka logo" /> Managing Blocking in Akka</h3>
+<h4><a href="#arnout-engelen" name="arnout-engelen" class="anchor"><span class="anchor-link"></span></a>Arnout Engelen</h4>
 <p><aside class="notes">Hi! I&rsquo;m Arnout from the Akka team, and today, we will look at blocking when using Akka.</aside></p></section><section>
 <ol>
   <li>Why is blocking dangerous?</li>
   <li>Using a custom dispatcher</li>
 </ol>
-<p>@notes[If you have been using Akka, you have probably heard it is bad to use blocking code inside an actor. In this video we will see:<br>  * why blocking is dangerous<br>  * how you can use a custom dispatcher if you must block<br></p></section><section>
+<p><aside class="notes">If you have been using Akka, you have probably heard it is bad to use blocking code inside an actor. In this video we will see:<br>  * why blocking is dangerous<br>  * how you can use a custom dispatcher if you must block</aside></p></section><section>
 <p><img src="images/actors.svg" alt="actors" /></p>
 <p><aside class="notes">When programming using actors, each actor receives messages in its mailbox. The actor system will make sure each message for an actor is processed sequentially.</aside></p></section><section>
 <p><img src="images/dispatcher-and-actors.svg" alt="dispatcher-and-actors" /></p>
@@ -231,8 +232,8 @@ object BlockingWrong extends App {
 }</code></pre>
 <p>application.conf</p>
 <p><aside class="notes">That is good to understand, but what if you really need to block? Sometimes a 3rd-party API provides no alternative to blocking. In such a case, you could introduce a dedicated dispatcher for your blocking calls. Let&rsquo;s return to our example. What we can do is introduce a second dispatcher that is dedicated to running our blocking actors. Such dispatchers are configured in your application.conf</aside></p></section><section>
-<pre class="prettyprint"><code class="language-scala">import akka.actor.typed.Dispatchers
-import akka.actor.typed.DispatcherSelector
+<pre class="prettyprint"><code class="language-scala">  import akka.actor.typed.Dispatchers
+  import akka.actor.typed.DispatcherSelector
 
 val root = Behaviors.setup[Nothing] { context =&gt;
   for (i &lt;- 1 to 50) {
