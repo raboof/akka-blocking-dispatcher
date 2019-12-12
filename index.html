@@ -33,9 +33,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <ol>
   <li>Why is blocking dangerous?</li>
   <li>Using a custom dispatcher</li>
-  <li>Project Loom</li>
 </ol>
-<p><aside class="notes">If you have been using Akka, you have probably heard it is bad to use blocking code inside an actor. In this video we will see:<br>  * why blocking is dangerous<br>  * how you can use a custom dispatcher if you must block<br>  * whether Project Loom will help fix this problem</aside></p></section><section>
+<p>@notes[If you have been using Akka, you have probably heard it is bad to use blocking code inside an actor. In this video we will see:<br>  * why blocking is dangerous<br>  * how you can use a custom dispatcher if you must block<br></p></section><section>
 <p><img src="images/actors.svg" alt="actors" /></p>
 <p><aside class="notes">When programming using actors, each actor receives messages in its mailbox. The actor system will make sure each message for an actor is processed sequentially.</aside></p></section><section>
 <p><img src="images/dispatcher-and-actors.svg" alt="dispatcher-and-actors" /></p>
@@ -261,8 +260,6 @@ val root = Behaviors.setup[Nothing] { context =&gt;
 [2019-12-12 12:43:46,651] [INFO] [BlockingActor$] - Started: 19
 </code></pre>
 <p><aside class="notes">All 50 messages to our non-blocking actor are immediately delivered, and our blocking actor is still using a limited number of threads</aside></p></section><section>
-<h1><a href="#project-loom" name="project-loom" class="anchor"><span class="anchor-link"></span></a>Project Loom</h1>
-<p><aside class="notes">You may have heard about Project Loom, a project to bring fibers (cheap threads) to the JVM. TODO: Actors model still useful for managing concurrent access to shared resources, but dispatchers can have many threads, so one blocking actor perhaps wouldn&rsquo;t interfere with other actors anymore. However, when possible, writing your blocking actor as a non-blocking one would still give benefits within that actor, since it allows that actor to process messages while the operation is running.</aside></p></section><section>
 <p>TODO final slide with links etc</p></section>
 </div>
 </div>
