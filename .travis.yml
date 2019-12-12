@@ -1,5 +1,7 @@
 language: scala
 
+scala: 2.13.1
+
 deploy:
   provider: pages
   skip-cleanup: true
