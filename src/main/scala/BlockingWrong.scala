@@ -4,13 +4,10 @@ import akka.actor.typed.scaladsl.Behaviors
 
 object BlockingWrong extends App {
   val root = Behaviors.setup[Nothing] { context =>
-    val printActor = context.spawn(PrintActor(), "future")
-
-    for (i <- 1 to 100) {
+    for (i <- 1 to 50) {
+      context.spawn(PrintActor(), s"print-$i") ! i
       context.spawn(BlockingActor(), s"blocking-$i") ! i
-      printActor ! i
     }
-
     Behaviors.empty
   }
   val system = ActorSystem[Nothing](root, "NonBlockingSample")

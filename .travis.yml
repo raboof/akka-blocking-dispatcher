@@ -1,0 +1,10 @@
+language: scala
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  keep-history: true
+  github-token: $GITHUB_TOKEN
+  local-dir: target/paradox/site/main
+  on:
+    branch: master

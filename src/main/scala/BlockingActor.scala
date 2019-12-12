@@ -3,13 +3,11 @@ import akka.actor.typed.scaladsl.Behaviors
 
 object BlockingActor {
     def apply(): Behavior[Int] =
-      Behaviors.receiveMessage { i =>
-        // DO NOT DO THIS HERE: this is an example of incorrect code,
-        // better alternatives are described futher on.
-
+      Behaviors.receive { (context, i) =>
+        context.log.info(s"Started: $i")
         //block for 5 seconds, representing blocking I/O, etc
         Thread.sleep(5000)
-        println(s"Blocking operation finished: $i")
+        context.log.info(s"Finished: $i")
         Behaviors.same
       }
   }

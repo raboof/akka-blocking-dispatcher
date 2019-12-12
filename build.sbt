@@ -6,7 +6,3 @@ libraryDependencies ++= Seq(
 )
 
 enablePlugins(ParadoxRevealPlugin)
-
-paradoxGroups := Map("Language" -> Seq("Scala", "Java"))
-
-paradoxProperties += ("selectedLanguage" → sys.env("PARADOX_LANGUAGE"))
