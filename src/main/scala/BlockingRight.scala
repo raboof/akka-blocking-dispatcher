@@ -1,8 +1,6 @@
 import akka.actor.typed.ActorSystem
-import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
 //#snip
-  import akka.actor.typed.Dispatchers
   import akka.actor.typed.DispatcherSelector
 
 //#snip
