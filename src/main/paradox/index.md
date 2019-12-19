@@ -4,6 +4,8 @@
 
 #### Arnout Engelen
 
+![lightbend-title](./lightbend-color-reverse.svg)
+
 @notes[Hi! I'm Arnout from the Akka team, and today, we will look at blocking when using Akka.]
 
 @@@
