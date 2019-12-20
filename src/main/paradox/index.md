@@ -1,6 +1,6 @@
 @@@section { data-background-color="#15a8ce" data-background-image="./front-bg.svg" }
 
-### ![akka logo](./akka-reverse.svg) Managing Blocking in Akka
+### ![](./akka-reverse.svg) Managing Blocking in Akka
 
 #### Arnout Engelen
 
@@ -268,8 +268,15 @@ threads]
 
 @@@
 
-@@@section
+@@@section { data-background-color="#15a8ce" data-background-image="./front-bg.svg" }
 
-TODO final slide with links etc
+### Links
+
+* [https://github.com/raboof/akka-blocking-dispatcher](https://github.com/raboof/akka-blocking-dispatcher)
+* [https://doc.akka.io/docs/akka](https://doc.akka.io/docs/akka/current/typed/dispatchers.html#blocking-needs-careful-management)
+* [https://doc.akka.io/docs/akka-enhancements](https://doc.akka.io/docs/akka-enhancements/current/starvation-detector.html)
+* [https://www.lightbend.com/videos-and-webinars](https://www.lightbend.com/videos-and-webinars)
+
+![lightbend-title](./lightbend-color-reverse.svg)
 
 @@@
