@@ -30,6 +30,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section data-background-image="./front-bg.svg" data-background-color="#15a8ce">
 <h3><a href="#managing-blocking-in-akka" name="managing-blocking-in-akka" class="anchor"><span class="anchor-link"></span></a><img src="./akka-reverse.svg" alt="akka logo" /> Managing Blocking in Akka</h3>
 <h4><a href="#arnout-engelen" name="arnout-engelen" class="anchor"><span class="anchor-link"></span></a>Arnout Engelen</h4>
+<p><img src="./lightbend-color-reverse.svg" alt="lightbend-title" /></p>
 <p><aside class="notes">Hi! I&rsquo;m Arnout from the Akka team, and today, we will look at blocking when using Akka.</aside></p></section><section>
 <ol>
   <li>Why is blocking dangerous?</li>
@@ -44,14 +45,13 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 import akka.actor.typed.scaladsl.Behaviors
 
 object PrintActor {
-    def apply(): Behavior[Integer] =
-      Behaviors.receive { (ctx, i) =&gt;
-        ctx.log.info(i.toString)
-        Behaviors.same
-      }
-  }</code></pre>
+  def apply(): Behavior[Integer] =
+    Behaviors.receive { (ctx, i) =&gt;
+      ctx.log.info(i.toString)
+      Behaviors.same
+    }
+}</code></pre>
 <pre class="prettyprint"><code class="language-scala">import akka.actor.typed.ActorSystem
-import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
 
 object NoBlocking extends App {
@@ -171,17 +171,16 @@ object NoBlocking extends App {
 import akka.actor.typed.scaladsl.Behaviors
 
 object BlockingActor {
-    def apply(): Behavior[Int] =
-      Behaviors.receive { (context, i) =&gt;
-        context.log.info(s&quot;Started: $i&quot;)
-        //block for 5 seconds, representing blocking I/O, etc
-        Thread.sleep(5000)
-        context.log.info(s&quot;Finished: $i&quot;)
-        Behaviors.same
-      }
-  }</code></pre>
+  def apply(): Behavior[Int] =
+    Behaviors.receive { (context, i) =&gt;
+      context.log.info(s&quot;Started: $i&quot;)
+      //block for 5 seconds, representing blocking I/O, etc
+      Thread.sleep(5000)
+      context.log.info(s&quot;Finished: $i&quot;)
+      Behaviors.same
+    }
+}</code></pre>
 <pre class="prettyprint"><code class="language-scala">import akka.actor.typed.ActorSystem
-import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
 
 object BlockingWrong extends App {
@@ -232,8 +231,7 @@ object BlockingWrong extends App {
 }</code></pre>
 <p>application.conf</p>
 <p><aside class="notes">That is good to understand, but what if you really need to block? Sometimes a 3rd-party API provides no alternative to blocking. In such a case, you could introduce a dedicated dispatcher for your blocking calls. Let&rsquo;s return to our example. What we can do is introduce a second dispatcher that is dedicated to running our blocking actors. Such dispatchers are configured in your application.conf</aside></p></section><section>
-<pre class="prettyprint"><code class="language-scala">  import akka.actor.typed.Dispatchers
-  import akka.actor.typed.DispatcherSelector
+<pre class="prettyprint"><code class="language-scala">  import akka.actor.typed.DispatcherSelector
 
 val root = Behaviors.setup[Nothing] { context =&gt;
   for (i &lt;- 1 to 50) {
