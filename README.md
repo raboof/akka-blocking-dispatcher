@@ -3,7 +3,7 @@
 This project contains the slides and example code for the short video on
 how to manage blocking in an Akka application.
 
-TODO embed/link video
+Video: [Managing blocking in Akka](https://akka.io/blog/news/2020/01/22/managing-blocking-video)
 
 Slides: https://raboof.github.io/akka-blocking-dispatcher
 
